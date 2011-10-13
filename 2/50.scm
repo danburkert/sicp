@@ -5,19 +5,34 @@
 
 (require (planet "sicp.ss" ("soegaard" "sicp.plt" 2 1)))
 
-
-(paint einstein)
-(paint (flip-vert einstein))
-(paint (flip-horiz einstein))
-
-   
 (define (flip-v painter)
   ((transform-painter (make-vect 0.0 1.0)
                       (make-vect 1.0 1.0)
                       (make-vect 0.0 0.0)) painter))
 
+(define (flip-h painter)
+  ((transform-painter (make-vect 1.0 0.0)
+                      (make-vect 0.0 0.0)
+                      (make-vect 1.0 1.0)) painter))
 
-((transform-painter (make-vect 0.0 1.0)
-                    (make-vect 1.0 1.0)
-                    (make-vect 0.0 0.0))
- einstein)
+(define (rotate-180 painter)
+  ((transform-painter (make-vect 1.0 1.0)
+                      (make-vect 0.0 1.0)
+                      (make-vect 1.0 0.0)) painter))
+
+(define (rotate-270 painter)
+  ((transform-painter (make-vect 0.0 1.0)
+                      (make-vect 0.0 0.0)
+                      (make-vect 1.0 1.0)) painter))
+
+; test
+(paint einstein)
+
+(paint (flip-vert einstein))
+(paint (flip-v einstein))
+
+(paint (flip-horiz einstein))
+(paint (flip-h einstein))
+
+(paint (rotate-180 einstein))
+(paint (rotate-270 einstein))
